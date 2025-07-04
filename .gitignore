@@ -7,6 +7,7 @@ yarn-error.log*
 
 # Build outputs
 dist/
+dist-docs/
 
 # IDE and editor files
 .vscode/

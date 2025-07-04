@@ -1,0 +1,73 @@
+name: Deploy Docs
+
+on:
+  push:
+    branches: [ main, dev ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Validate and build OpenAPI specification
+      run: npm run build
+      
+    - name: Setup Pages
+      uses: actions/configure-pages@v4
+      
+    - name: Install Swagger UI
+      run: npm install swagger-ui-dist@latest
+      
+    - name: Create Swagger UI site
+      run: |
+        # Create a directory for the site
+        mkdir -p docs-site
+        
+        # Copy Swagger UI files
+        cp -r node_modules/swagger-ui-dist/* docs-site/
+        
+        # Copy our OpenAPI specification
+        cp dist/openapi.yaml docs-site/
+        
+        # Copy docs template files
+        cp docs/index.html docs-site/
+        cp docs/swagger-init.js docs-site/
+        
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: ./docs-site
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4 
