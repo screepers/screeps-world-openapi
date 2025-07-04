@@ -1,0 +1,41 @@
+{
+  "name": "screeps-world-openapi",
+  "version": "1.0.0",
+  "description": "Unofficial OpenAPI specification for the Screeps World Web API",
+  "main": "src/openapi.yaml",
+  "scripts": {
+    "validate": "swagger-cli validate src/openapi.yaml",
+    "bundle": "swagger-cli bundle src/openapi.yaml --outfile dist/openapi.yaml --type yaml",
+    "build": "npm run validate && npm run bundle",
+    "serve": "swagger-ui-watcher src/openapi.yaml -p 3000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/screepers/screeps-world-openapi.git"
+  },
+  "keywords": [
+    "screeps",
+    "openapi"
+  ],
+  "author": "Screepers",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/screepers/screeps-world-openapi/issues"
+  },
+  "homepage": "https://github.com/screepers/screeps-world-openapi#readme",
+  "devDependencies": {
+    "@apidevtools/swagger-cli": "^4.0.4",
+    "swagger-ui-watcher": "^2.1.8"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "files": [
+    "src/",
+    "dist/",
+    "examples/",
+    "README.md",
+    "LICENSE"
+  ]
+}
