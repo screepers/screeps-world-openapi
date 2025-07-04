@@ -124,6 +124,57 @@ paths:
                   credits:
                     type: number
 
+  /user/auth-token:
+    get:
+      tags: [Authentication]
+      summary: Get information about the current user's authentication tokens
+      security:
+        - ApiKeyAuth: []
+      responses:
+        "200":
+          description: User authentication tokens information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: integer
+                  tokens:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        _id:
+                          type: string
+                        full:
+                          type: boolean
+                        token:
+                          type: string
+                        description:
+                          type: string
+                        endpoints:
+                          type: array
+                          items:
+                            type: string
+                        websockets:
+                          type: array
+                          items:
+                            type: string
+              example:
+                ok: 1
+                tokens:
+                  - _id: "6867ccee2df7a30011682574"
+                    full: true
+                    token: "07038860-****-****-****-************"
+                    description: "token 1 (full access)"
+                  - _id: "6867cd0ea9d0b4001223f137"
+                    full: false
+                    token: "d2e4c9b7-****-****-****-************"
+                    description: "token 2 (websockets console)"
+                    endpoints: []
+                    websockets: ["console"]
+
   /auth/signin:
     post:
       tags: [Authentication]
