@@ -10,12 +10,9 @@ Unofficial OpenAPI specification for the [Screeps World](https://screeps.com/) W
 
 ### View the API Documentation
 
-#### Online (Swagger UI):
-- [View Latest Specification](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/screepers/screeps-world-openapi/main/src/openapi.yaml)
-
-#### Local:
+#### Local Swagger UI
 Prerequisites: \
-Git and Node.js 16+
+Git, Node.js 16+
 
 ```bash
 git clone https://github.com/screepers/screeps-world-openapi.git
@@ -23,31 +20,6 @@ cd screeps-world-openapi
 npm install
 npm run serve
 ```
-
-## Authentication
-
-The Screeps API supports two authentication methods:
-
-### For Official Servers (Auth Tokens)
-```http
-X-Token: your_auth_token_here
-```
-
-### For Private Servers (Signin Method)
-1. **Get Token:**
-   ```json
-   POST /auth/signin
-   {
-     "email": "your_username_or_email",
-     "password": "your_password"
-   }
-   ```
-
-2. **Use Token:**
-   ```http
-   X-Token: token_from_signin_response
-   X-Username: your_username
-   ```
 
 ## CORS Limitations
 
