@@ -7,7 +7,9 @@
     "validate": "swagger-cli validate src/openapi.yaml",
     "bundle": "swagger-cli bundle src/openapi.yaml --outfile dist/openapi.yaml --type yaml",
     "build": "npm run validate && npm run bundle",
-    "serve": "swagger-ui-watcher src/openapi.yaml -p 3000"
+    "serve": "swagger-ui-watcher src/openapi.yaml -p 3000",
+    "serve:docs": "npm run build && npm run docs:setup && http-server dist-docs -p 8080 -o",
+    "docs:setup": "rm -rf dist-docs && mkdir -p dist-docs && cp -r node_modules/swagger-ui-dist/* dist-docs/ && cp dist/openapi.yaml dist-docs/ && cp docs/index.html dist-docs/ && cp docs/swagger-init.js dist-docs/"
   },
   "repository": {
     "type": "git",
@@ -25,7 +27,9 @@
   "homepage": "https://github.com/screepers/screeps-world-openapi#readme",
   "devDependencies": {
     "@apidevtools/swagger-cli": "^4.0.4",
-    "swagger-ui-watcher": "^2.1.8"
+    "http-server": "^14.1.1",
+    "swagger-ui-dist": "^5.26.0",
+    "swagger-ui-watcher": "^2.1.14"
   },
   "engines": {
     "node": ">=16.0.0",
@@ -34,6 +38,7 @@
   "files": [
     "src/",
     "dist/",
+    "docs/",
     "examples/",
     "README.md",
     "LICENSE"
