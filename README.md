@@ -10,7 +10,10 @@ Unofficial OpenAPI specification for the [Screeps World](https://screeps.com/) W
 
 ### View the API Documentation
 
-#### Local Swagger UI
+#### Hosted on GitHub
+[🔗 screepers.github.io/screeps-world-openapi](https://screepers.github.io/screeps-world-openapi/)
+
+#### Run Local Server
 Prerequisites: \
 Git, Node.js 16+
 
