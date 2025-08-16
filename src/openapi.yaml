@@ -704,23 +704,6 @@ paths:
         '200':
           description: User statistics
 
-  /user/rooms:
-    get:
-      tags: [User Information]
-      summary: Get user rooms
-      parameters:
-        - name: interval
-          in: query
-          schema:
-            type: integer
-            enum: [8, 180, 1440]
-          example: 8
-      security:
-        - ApiKeyAuth: []
-      responses:
-        '200':
-          description: User rooms
-
   /user/find:
     get:
       tags: [User Information]
