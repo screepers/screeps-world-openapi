@@ -704,6 +704,24 @@ paths:
         '200':
           description: User statistics
 
+  /user/rooms:
+    get:
+      tags: [User Information]
+      summary: Get user rooms
+      parameters:
+        - name: id
+          in: query
+          schema:
+            type: string
+          description: User ID
+          required: true
+          example: "588d50e64b9e9fe43a40ebb5"
+      security:
+        - ApiKeyAuth: []
+      responses:
+        '200':
+          description: User rooms
+
   /user/find:
     get:
       tags: [User Information]
